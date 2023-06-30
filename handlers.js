@@ -17,5 +17,5 @@ export function handleResult({ results }) {
   console.log(color);
   console.log('this is a valid color!');
   // change the background color with the selected color
-  document.body.style.cssText = `background-color: ${color}; background-image: none;`;
+  document.body.style.cssText += `background-color: ${color};`;
 }
