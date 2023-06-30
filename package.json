@@ -1,0 +1,23 @@
+{
+  "name": "Speech-test",
+  "version": "1.0.0",
+  "description": "Speech-test",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build speech.js"
+  },
+  "author": "Manuel Augusto Bravard",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m32795434/speech-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/m32795434/speech-test/issues"
+  },
+  "homepage": "https://github.com/m32795434/speech-test#readme"
+}
