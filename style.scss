@@ -9,21 +9,28 @@ body {
 }
 
 .h1-board {
+  height: 200px;
+  background-color: #ffffffe0;
+  border: 18px solid #edb227;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 2rem;
   display: flex;
   gap: 10px;
+  flex-wrap: nowrap;
   justify-content: center;
-  margin: 5rem 0 0 0;
+  align-content: center;
   width: 100%;
   position: sticky;
   top: 0;
 
   & h1 {
     width: 70%;
+    margin: 30px 0;
     font-size: 10rem;
     transition: all 0.4s;
-    position: relative;
-    color: #fff;
-    background-color: #86b7fe;
+    // position: relative;
+    color: #c42ab6;
   }
 
   & .board {
@@ -31,6 +38,7 @@ body {
     background-image: url('./black-1072366_640.jpg');
     background-position: center;
     background-size: contain;
+
   }
 }
 
