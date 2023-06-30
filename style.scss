@@ -8,14 +8,30 @@ body {
   align-content: center;
 }
 
-h1 {
-  width: 70%;
-  font-size: 10rem;
+.h1-board {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
   margin: 5rem 0 0 0;
-  transition: all 0.4s;
-  position: relative;
-  color: #fff;
-  background-color: #86b7fe;
+  width: 100%;
+  position: sticky;
+  top: 0;
+
+  & h1 {
+    width: 70%;
+    font-size: 10rem;
+    transition: all 0.4s;
+    position: relative;
+    color: #fff;
+    background-color: #86b7fe;
+  }
+
+  & .board {
+    width: 20%;
+    background-image: url('./black-1072366_640.jpg');
+    background-position: center;
+    background-size: contain;
+  }
 }
 
 .colors {
