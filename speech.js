@@ -13,8 +13,7 @@ function displayColors(colors) {
   return colors
     .map(
       (color) =>
-        `<span class="color ${color} ${
-          isDark(color) ? 'dark' : ''
+        `<span class="color ${color} ${isDark(color) ? 'dark' : ''
         }" style="background:${color};">${color}</span>`
     )
     .join('');
@@ -30,7 +29,7 @@ function start() {
   console.log('starting....');
   colorsEl.innerHTML = displayColors(colorsByLength); // could be outside the function?
   recognition.continuous = true;
-  recognition.lang = "en-GB";
+  recognition.lang = "en-Us";
   recognition.interimResults = false; // will not recognize as soon as it hears a word
   recognition.onresult = handleResult;
   recognition.start();

@@ -1,4 +1,4 @@
-export const colors = {
+export const $EXPECTED_COLORS = {
   black: '#000000',
   silver: '#C0C0C0',
   gray: '#808080',
@@ -151,17 +151,17 @@ export const colors = {
 
 // taken from stackoverflow
 export function isDark(colorName) {
-  const hex = colors[colorName].substring(1, 7);
+  const hex = $EXPECTED_COLORS[colorName].substring(1, 7);
   const r = parseInt(hex.substring(0, 2), 16);
   const g = parseInt(hex.substring(2, 4), 16);
   const b = parseInt(hex.substring(4, 6), 16);
   return r * 0.299 + g * 0.587 + b * 0.114 < 120; // if lower than 120, is a dark color
 }
-export const colorsByLength = Object.keys(colors).sort(
+export const colorsByLength = Object.keys($EXPECTED_COLORS).sort(
   (a, b) => a.length - b.length
 );
 console.log(colorsByLength);
 
-export function isValidColor(word) {
-  return !!colors[word];
-}
+// export function isValidColor(word) {
+//   return !!colors[word];
+// }
