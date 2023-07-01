@@ -30,7 +30,8 @@ function start() {
   console.log('starting....');
   colorsEl.innerHTML = displayColors(colorsByLength); // could be outside the function?
   recognition.continuous = true;
-  recognition.interimResults = true; // will recognize as soon as it hears a word
+  recognition.lang = "en-GB";
+  recognition.interimResults = false; // will not recognize as soon as it hears a word
   recognition.onresult = handleResult;
   recognition.start();
   console.log(recognition);
