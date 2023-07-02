@@ -7,10 +7,10 @@ function wait(ms) {
 
 export async function handleResult({ results }) {
 
-  const words = results[results.length - 1][0].transcript;//grabs everything
-  console.log('transcripted:', words)
+  const transc = results[results.length - 1][0].transcript;//grabs everything
+  console.log('transcripted:', transc)
   // strip out any dot + lowercase 
-  let filteredColorsArray = words.replace(/\./g, '').toLowerCase().split(' ');
+  let filteredColorsArray = transc.replace(/\s/g, '').toLowerCase().split(/\.|\,/g);
   console.log('colors: ', filteredColorsArray)
   //check if they are valid colors
   for (index = 0; index < filteredColorsArray.length; index++) {
@@ -21,7 +21,7 @@ export async function handleResult({ results }) {
       colorSpan.classList.add('got');
       document.body.style.cssText += `background-color: ${color};`;
     }
-    await wait(0);
+    // await wait(500);
   }
 
 }
