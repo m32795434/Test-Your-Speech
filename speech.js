@@ -13,7 +13,8 @@ function displayColors(colors) {
   return colors
     .map(
       (color) =>
-        `<span class="color ${color} ${isDark(color) ? 'dark' : ''
+        `<span class="color ${color} ${
+          isDark(color) ? 'dark' : ''
         }" style="background:${color};">${color}</span>`
     )
     .join('');
@@ -29,7 +30,7 @@ function start() {
   console.log('starting....');
   colorsEl.innerHTML = displayColors(colorsByLength); // could be outside the function?
   recognition.continuous = true;
-  recognition.lang = "en-US";
+  recognition.lang = 'en-US';
   recognition.interimResults = false; // will not recognize as soon as it hears a word//SpeechRecognitionResult.isFinal
   recognition.onresult = handleResult;
   recognition.start();
@@ -39,11 +40,15 @@ function handleStart() {
   recognition.start();
   startBtn.classList.add('animate');
   stopBtn.classList.remove('animate');
+  startBtn.disabled = true;
+  stopBtn.disabled = false;
 }
 function handleStop() {
   recognition.stop();
   stopBtn.classList.add('animate');
   startBtn.classList.remove('animate');
+  startBtn.disabled = false;
+  stopBtn.disabled = true;
 }
 
 start();
