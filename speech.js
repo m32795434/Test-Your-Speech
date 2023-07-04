@@ -4,6 +4,10 @@ import { colorsByLength, isDark } from './colors';
 const colorsEl = document.querySelector('.colors');
 const startBtn = document.querySelector('.start');
 const stopBtn = document.querySelector('.stop');
+const timerEl = document.querySelector('.timer');
+
+let timerInterval;
+let timeLeft = 120;
 
 // new SpeechRecognition, no matters if it's one of the "webkit" versions
 window.SpeechRecognition =
@@ -20,6 +24,17 @@ function displayColors(colors) {
     .join('');
 }
 
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timerEl.textContent = `${timeLeft} s`;
+    timeLeft--;
+    if (timeLeft < 0) {
+      clearInterval(timerInterval);
+      handleStop();
+    }
+  }, 1000);
+}
+
 function start() {
   // see if the browser supports this
   if (!('SpeechRecognition' in window)) {
@@ -27,7 +42,7 @@ function start() {
     return;
   }
   recognition = new window.SpeechRecognition();
-  console.log('starting....');
+  console.log('recognition OK');
   colorsEl.innerHTML = displayColors(colorsByLength); // could be outside the function?
   recognition.continuous = true;
   recognition.lang = 'en-US';
@@ -41,13 +56,16 @@ function handleStart() {
   stopBtn.classList.remove('animate');
   startBtn.disabled = true;
   stopBtn.disabled = false;
+  startTimer();
 }
 function handleStop() {
   recognition.stop();
+  clearInterval(timerInterval);
   stopBtn.classList.add('animate');
   startBtn.classList.remove('animate');
   startBtn.disabled = false;
   stopBtn.disabled = true;
+  timeLeft = 120;
 }
 
 start();

@@ -163,5 +163,5 @@ export const colorsByLength = Object.keys($EXPECTED_COLORS).sort(
 console.log(colorsByLength);
 
 // export function isValidColor(word) {
-//   return !!colors[word];
+//   return !!$EXPECTED_COLORS[word];
 // }

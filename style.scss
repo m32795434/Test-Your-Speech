@@ -34,6 +34,9 @@ body {
   }
 
   & .board {
+    display: grid;
+    justify-content: center;
+    align-content: center;
     width: 19%;
     background-image: url('chalkboard-152414_640.png');
     background-position: center;
