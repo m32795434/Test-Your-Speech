@@ -33,8 +33,7 @@ function start() {
   recognition.lang = 'en-US';
   recognition.interimResults = false; // will not recognize as soon as it hears a word//SpeechRecognitionResult.isFinal
   recognition.onresult = handleResult;
-  recognition.start();
-  console.log(recognition);
+  // recognition.start();
 }
 function handleStart() {
   recognition.start();

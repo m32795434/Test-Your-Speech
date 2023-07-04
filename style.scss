@@ -87,5 +87,10 @@ body {
     &:hover {
       border-color: #d1e00d;
     }
+
+    &[disabled] {
+      opacity: 0.5;
+      border: none;
+    }
   }
 }
