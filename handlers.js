@@ -1,4 +1,5 @@
 import { $EXPECTED_COLORS } from './colors';
+import ToastService from './toastService';
 
 const pointsEl = document.querySelector('.points');
 const $COLORS_FOUNDED = [];
@@ -27,12 +28,15 @@ export async function handleResult({ results }) {
   for (let index = 0; index < filteredColorsArray.length; index++) {
     const color = filteredColorsArray[index];
     if ($EXPECTED_COLORS[color] && !$COLORS_FOUNDED.includes(color)) {
-      console.log('Good job!. Detected: ', color);
+      // console.log('Good job!. Detected: ', color);
+      ToastService.showSuccessToast(`Good job!. Detected: ${color}`);
       const colorSpan = document.querySelector(`.${color}`);
       colorSpan.classList.add('got');
       document.body.style.cssText += `background-color: ${color};`;
       ++correctCount;
       $COLORS_FOUNDED.push(color);
+    } else if (color) {
+      ToastService.showErrorToast(`Transcripted: ${color}`);
     }
     // await wait(500);
     pointsEl.textContent = `${correctCount} / ${totalCount}`;

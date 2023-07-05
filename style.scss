@@ -1,5 +1,9 @@
+// Import all of Bootstrap's CSS
+@import "bootstrap/scss/bootstrap";
+
 body {
   transition: background-color 0.4s;
+  font-size: 2rem;
   font-family: sans-serif;
   text-align: center;
   display: grid;
@@ -34,6 +38,8 @@ body {
   }
 
   & .board {
+    color: white;
+    font-family: 'Shantell Sans', cursive;
     display: grid;
     justify-content: center;
     align-content: center;
