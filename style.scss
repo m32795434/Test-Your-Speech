@@ -3,7 +3,7 @@
 
 body {
   transition: background-color 0.4s;
-  font-size: 2rem;
+  font-size: 5rem;
   font-family: sans-serif;
   text-align: center;
   display: grid;
@@ -11,6 +11,18 @@ body {
   justify-items: center;
   align-content: center;
   margin-bottom: 7rem;
+  background-color: red;
+
+  // @include media-breakpoint-up(sm) {
+  //   background-color: red;
+  //   margin-bottom: 0;
+  // }
+
+  @include media-breakpoint-up(lg) {
+    font-size: 2rem;
+    margin-bottom: 7rem;
+    background-color: white;
+  }
 }
 
 .toast-container {
@@ -19,7 +31,7 @@ body {
 }
 
 .h1-board {
-  height: 200px;
+  height: 350px;
   background-color: #ffffffe0;
   border: 18px solid #edb227;
   border-radius: 5px;
@@ -34,25 +46,37 @@ body {
   position: sticky;
   top: 0;
 
+  @include media-breakpoint-up(lg) {
+    height: 200px;
+  }
+
   & h1 {
     display: inline-block;
     margin: 2rem 0;
-    font-size: 10rem;
+    font-size: 8rem;
     transition: all 0.4s;
     color: #c42ab6;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 10rem;
+    }
   }
 
   & .board {
     color: white;
+    width: 50%;
     font-family: 'Shantell Sans', cursive;
     display: grid;
     justify-content: center;
     align-content: center;
-    width: 19%;
     background-image: url('chalkboard-152414_640.png');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+
+    @include media-breakpoint-up(lg) {
+      width: 19%;
+    }
   }
 }
 
