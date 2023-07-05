@@ -2,9 +2,9 @@ import bootstrap from 'bootstrap/dist/js/bootstrap';
 
 class ToastService {
   static showErrorToast(message) {
-    const toast = document.querySelector('#toastContainer');
+    const toast = document.querySelector('#toastContainerErr');
     toast.innerHTML = `
-        <div class="toast-body bg-danger text-light" data-bs-delay="3000" 
+        <div class="toast-body" 
         role="alert" aria-live="assertive" aria-atomic="true">
           ${message}
         </div>
@@ -14,9 +14,9 @@ class ToastService {
   }
 
   static showSuccessToast(message) {
-    const toast = document.querySelector('#toastContainer');
+    const toast = document.querySelector('#toastContainerSucc');
     toast.innerHTML = `
-        <div class="toast-body bg-success text-light" data-bs-delay="3000" 
+        <div class="toast-body" 
         role="alert" aria-live="assertive" aria-atomic="true">
           ${message}
         </div>
