@@ -28,6 +28,21 @@ body {
   border-radius: 5px;
 }
 
+#toastGreatJob {
+  z-index: 2000;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-color: #2d2d30d4;
+  width: 100%;
+  height: 100%;
+
+  & img {
+    width: 100%;
+    height: auto;
+  }
+}
+
 .h1-board {
   height: 350px;
   background-color: #ffffffe0;

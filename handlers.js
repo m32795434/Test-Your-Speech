@@ -1,5 +1,6 @@
 import { $EXPECTED_COLORS } from './colors';
 import ToastService from './toastService';
+import { handleStop } from './speech.js';
 
 const pointsEl = document.querySelector('.points');
 let $COLORS_FOUNDED = [];
@@ -52,7 +53,11 @@ export async function handleResult({ results }) {
     </svg>
       Transcripted: ${color}`);
     }
-    // await wait(500);
     pointsEl.textContent = `${correctCount} / ${totalCount}`;
+    if (correctCount === totalCount) {
+      console.log(correctCount);
+      handleStop();
+      ToastService.showGreatJob();
+    }
   }
 }

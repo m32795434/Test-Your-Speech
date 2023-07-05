@@ -6,8 +6,9 @@ const startBtn = document.querySelector('.start');
 const stopBtn = document.querySelector('.stop');
 const timerEl = document.querySelector('.timer');
 
+const TOTAL_TIME = 560;
+let timeLeft = TOTAL_TIME;
 let timerInterval;
-let timeLeft = 240;
 
 // new SpeechRecognition, no matters if it's one of the "webkit" versions
 window.SpeechRecognition =
@@ -26,7 +27,11 @@ function displayColors(colors) {
 
 function startTimer() {
   timerInterval = setInterval(() => {
-    timerEl.textContent = `${timeLeft} s`;
+    const showTime =
+      timeLeft / 60 > 1
+        ? `${Math.floor(timeLeft / 60)}min ${timeLeft % 60}s`
+        : `${timeLeft}s`;
+    timerEl.textContent = showTime;
     timeLeft--;
     if (timeLeft < 0) {
       clearInterval(timerInterval);
@@ -58,12 +63,12 @@ function handleStart() {
   stopBtn.disabled = false;
   startTimer();
 }
-function handleStop() {
+export function handleStop() {
   stopBtn.classList.add('animate');
   startBtn.classList.remove('animate');
   startBtn.disabled = false;
   stopBtn.disabled = true;
-  timeLeft = 240;
+  timeLeft = TOTAL_TIME;
   recognition.stop();
   clearInterval(timerInterval);
   reLoadCount();
