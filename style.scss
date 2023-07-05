@@ -13,15 +13,13 @@ body {
   margin-bottom: 7rem;
   background-color: red;
 
-  // @include media-breakpoint-up(sm) {
-  //   background-color: red;
-  //   margin-bottom: 0;
-  // }
+  @include media-breakpoint-up(md) {
+    font-size: 3rem;
+  }
 
   @include media-breakpoint-up(lg) {
     font-size: 2rem;
     margin-bottom: 7rem;
-    background-color: white;
   }
 }
 
@@ -57,12 +55,18 @@ body {
     transition: all 0.4s;
     color: #c42ab6;
 
-    @include media-breakpoint-up(lg) {
+    @include media-breakpoint-only(lg) {
+      font-size: 9rem;
+
+    }
+
+    @include media-breakpoint-up(xl) {
       font-size: 10rem;
     }
   }
 
   & .board {
+    font-size: 5rem;
     color: white;
     width: 50%;
     font-family: 'Shantell Sans', cursive;
@@ -76,6 +80,7 @@ body {
 
     @include media-breakpoint-up(lg) {
       width: 19%;
+      font-size: 2rem;
     }
   }
 }
