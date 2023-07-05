@@ -2,7 +2,7 @@ import { $EXPECTED_COLORS } from './colors';
 import ToastService from './toastService';
 
 const pointsEl = document.querySelector('.points');
-const $COLORS_FOUNDED = [];
+let $COLORS_FOUNDED = [];
 
 function wait(ms) {
   return new Promise((res) => {
@@ -14,11 +14,13 @@ let correctCount = 0;
 
 export function reLoadCount() {
   correctCount = 0;
+  $COLORS_FOUNDED = [];
 }
 
 export async function handleResult({ results }) {
+  // console.log('colors founded:', $COLORS_FOUNDED);
   const transc = results[results.length - 1][0].transcript; // grabs everything
-  console.log('transcripted:', transc);
+  // console.log('transcripted:', transc);
   // strip out any dot + lowercase
   let filteredColorsArray = transc
     .replace(/\s/g, '')
@@ -27,7 +29,7 @@ export async function handleResult({ results }) {
   filteredColorsArray = filteredColorsArray.filter((el) => {
     if (el !== '') return el;
   });
-  console.log('colors: ', filteredColorsArray);
+  // console.log('colors: ', filteredColorsArray);
   // check if they are valid colors
 
   const totalCount = Object.keys($EXPECTED_COLORS).length;
@@ -36,7 +38,7 @@ export async function handleResult({ results }) {
     const color = filteredColorsArray[index];
     if ($EXPECTED_COLORS[color] && !$COLORS_FOUNDED.includes(color)) {
       // console.log('Good job!. Detected: ', color);
-      ToastService.showSuccessToast(`Great job 🎯! - ${color}`);
+      ToastService.showSuccessToast(`Great job! - ${color} 🎯`);
       const colorSpan = document.querySelector(`.${color}`);
       colorSpan.classList.add('got');
       document.body.style.cssText += `background-color: ${color};`;
