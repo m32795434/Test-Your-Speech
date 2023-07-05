@@ -1,4 +1,4 @@
-import { handleResult } from './handlers';
+import { handleResult, reLoadCount } from './handlers';
 import { colorsByLength, isDark } from './colors';
 
 const colorsEl = document.querySelector('.colors');
@@ -7,7 +7,7 @@ const stopBtn = document.querySelector('.stop');
 const timerEl = document.querySelector('.timer');
 
 let timerInterval;
-let timeLeft = 120;
+let timeLeft = 240;
 
 // new SpeechRecognition, no matters if it's one of the "webkit" versions
 window.SpeechRecognition =
@@ -59,13 +59,17 @@ function handleStart() {
   startTimer();
 }
 function handleStop() {
-  recognition.stop();
-  clearInterval(timerInterval);
   stopBtn.classList.add('animate');
   startBtn.classList.remove('animate');
   startBtn.disabled = false;
   stopBtn.disabled = true;
-  timeLeft = 120;
+  timeLeft = 240;
+  recognition.stop();
+  clearInterval(timerInterval);
+  reLoadCount();
+  Array.from(document.querySelectorAll('.got')).forEach((el) =>
+    el.classList.remove('got')
+  );
 }
 
 start();
