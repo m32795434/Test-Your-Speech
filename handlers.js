@@ -5,7 +5,7 @@ import { handleStop } from './speech.js';
 const pointsEl = document.querySelector('.points');
 let $COLORS_FOUNDED = [];
 
-function wait(ms) {
+export function wait(ms) {
   return new Promise((res) => {
     setTimeout(res, ms);
   });

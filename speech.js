@@ -1,5 +1,6 @@
-import { handleResult, reLoadCount } from './handlers';
+import { handleResult, reLoadCount, wait } from './handlers';
 import { colorsByLength, isDark } from './colors';
+import ToastService from './toastService.js';
 
 const colorsEl = document.querySelector('.colors');
 const startBtn = document.querySelector('.start');
@@ -9,6 +10,7 @@ const timerEl = document.querySelector('.timer');
 const TOTAL_TIME = 560;
 let timeLeft = TOTAL_TIME;
 let timerInterval;
+let audioStart = false;
 
 // new SpeechRecognition, no matters if it's one of the "webkit" versions
 window.SpeechRecognition =
@@ -43,7 +45,7 @@ function startTimer() {
 function start() {
   // see if the browser supports this
   if (!('SpeechRecognition' in window)) {
-    alert(
+    ToastService.showErrorToast(
       'Damn! your browser does not support speech recognition 😕. Try with another browser'
     );
     return;
@@ -55,17 +57,38 @@ function start() {
   recognition.lang = 'en-US';
   recognition.interimResults = false; // will not recognize as soon as it hears a word//SpeechRecognitionResult.isFinal
   recognition.onresult = handleResult;
+
+  recognition.onaudiostart = () => {
+    audioStart = true;
+  };
+  recognition.onsoundend = () => {
+    ToastService.showErrorToast('Sound has stopped being received');
+    handleStop();
+  };
   // recognition.start();
 }
-function handleStart() {
+async function handleStart() {
+  if (!recognition) return;
   recognition.start();
+  await wait(500);
+  if (!audioStart) {
+    ToastService.showErrorToast(
+      'You must authorize the microphone to use this app. Then refresh for better performance'
+    );
+    recognition.stop();
+    return;
+  }
+  console.log(recognition, 'audioStart:', audioStart);
   startBtn.classList.add('animate');
   stopBtn.classList.remove('animate');
   startBtn.disabled = true;
   stopBtn.disabled = false;
   startTimer();
 }
+
 export function handleStop() {
+  if (!recognition) return;
+  audioStart = false;
   stopBtn.classList.add('animate');
   startBtn.classList.remove('animate');
   startBtn.disabled = false;
