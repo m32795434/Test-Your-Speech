@@ -43,7 +43,9 @@ function startTimer() {
 function start() {
   // see if the browser supports this
   if (!('SpeechRecognition' in window)) {
-    console.log('your browser does not support speech recognition');
+    alert(
+      'Damn! your browser does not support speech recognition 😕. Try with another browser'
+    );
     return;
   }
   recognition = new window.SpeechRecognition();
