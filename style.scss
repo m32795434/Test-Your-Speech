@@ -28,7 +28,7 @@ body {
   border-radius: 5px;
 }
 
-#toastGreatJob {
+#greatJobToast {
   z-index: 2000;
   display: grid;
   justify-content: center;
@@ -41,6 +41,15 @@ body {
     width: 100%;
     height: auto;
   }
+}
+
+#welcomeToast {
+  position: absolute;
+  top: 50%;
+  background-color: white;
+  color: black;
+  font-family: var(--bs-body-font-family);
+  font-size: 1.5rem;
 }
 
 .h1-board {

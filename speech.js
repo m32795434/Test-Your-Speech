@@ -11,6 +11,7 @@ const TOTAL_TIME = 560;
 let timeLeft = TOTAL_TIME;
 let timerInterval;
 let audioStart = false;
+let stopped = false;
 
 // new SpeechRecognition, no matters if it's one of the "webkit" versions
 window.SpeechRecognition =
@@ -50,6 +51,7 @@ function start() {
     );
     return;
   }
+  ToastService.showWelcome();
   recognition = new window.SpeechRecognition();
   console.log('recognition OK');
   colorsEl.innerHTML = displayColors(colorsByLength); // could be outside the function?
@@ -60,10 +62,20 @@ function start() {
 
   recognition.onaudiostart = () => {
     audioStart = true;
+    stopped = false;
   };
   recognition.onsoundend = () => {
-    ToastService.showErrorToast('Sound has stopped being received');
-    handleStop();
+    // ToastService.showErrorToast('Sound has stopped being received');
+    console.log('Sound has stopped being received'); // FIRST!
+    // handleStop();
+  };
+  recognition.onend = () => {
+    ToastService.showErrorToast('Speech recognition service disconnected');
+    console.log('Speech recognition service disconnected'); // THIRD!
+    if (!stopped) handleStop();
+  };
+  recognition.onaudioend = () => {
+    console.log('Audio capturing ended'); // SECOND!
   };
   // recognition.start();
 }
@@ -73,12 +85,11 @@ async function handleStart() {
   await wait(500);
   if (!audioStart) {
     ToastService.showErrorToast(
-      'You must authorize the microphone to use this app. Then refresh for better performance'
+      "Audio capturing hasn't started. Have you authorize the microphone?. Then refresh for better performance"
     );
     recognition.stop();
     return;
   }
-  console.log(recognition, 'audioStart:', audioStart);
   startBtn.classList.add('animate');
   stopBtn.classList.remove('animate');
   startBtn.disabled = true;
@@ -88,6 +99,7 @@ async function handleStart() {
 
 export function handleStop() {
   if (!recognition) return;
+  stopped = true;
   audioStart = false;
   stopBtn.classList.add('animate');
   startBtn.classList.remove('animate');
