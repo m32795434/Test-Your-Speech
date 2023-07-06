@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Speech-test",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build speech.js"
+    "start": "parcel serve index.html --public-url / --dist-dir dist",
+    "build": "parcel build index.html --public-url / --dist-dir dist"
   },
   "eslintConfig": {
     "extends": [
