@@ -57,7 +57,7 @@ function start() {
   colorsEl.innerHTML = displayColors(colorsByLength); // could be outside the function?
   recognition.continuous = true;
   recognition.lang = 'en-US';
-  recognition.interimResults = true; // will recognize as soon as it hears a word//SpeechRecognitionResult.isFinal
+  recognition.interimResults = false; // will not recognize as soon as it hears a word//SpeechRecognitionResult.isFinal
   recognition.onresult = handleResult;
 
   recognition.onaudiostart = () => {
@@ -118,3 +118,77 @@ start();
 
 startBtn.addEventListener('click', handleStart);
 stopBtn.addEventListener('click', handleStop);
+
+/* mobile:
+// Seleccionamos los elementos del DOM que vamos a usar
+const startBtn = document.getElementById('start-btn');
+const stopBtn = document.getElementById('stop-btn');
+const audioPlayer = document.getElementById('recorded-audio');
+
+// Inicializamos el objeto SpeechRecognition
+const recognition = new window.webkitSpeechRecognition();
+
+// Propiedades de la grabación
+recognition.continuous = true;
+recognition.interimResults = true;
+recognition.lang = 'es-ES';
+
+let recordingStartTime; // Momento en que la grabación comenzó
+let recordingEndTime; // Momento en que la grabación terminó
+let audioChunks = []; // Array para almacenar los segmentos
+
+// Evento "touchstart" para iniciar la grabación
+startBtn.addEventListener('touchstart', () => {
+  recognition.start();
+  recordingStartTime = Date.now();
+  console.log('Comenzando la grabación');
+});
+
+// Evento "touchend" para detener la grabación
+stopBtn.addEventListener('touchend', () => {
+  recognition.stop();
+  recordingEndTime = Date.now();
+  console.log('Deteniendo la grabación');
+});
+
+// Evento "result" para procesar los resultados de la grabación
+recognition.addEventListener('result', (e) => {
+  // Iteramos sobre los resultados de la grabación
+  for (let i = e.resultIndex; i < e.results.length; i++) {
+    // Si el resultado es "final", lo añadimos al array de audioChunks
+    if (e.results[i].isFinal) {
+      audioChunks.push(e.results[i][0].transcript);
+    }
+  }
+});
+
+// Evento "end" para procesar el fin de la grabación
+recognition.addEventListener('end', () => {
+  // Convertimos los segmentos en una única cadena de texto y la mostramos en la consola
+  const recordedText = audioChunks.join(' ');
+    // Mostramos el resultado en la consola
+  console.log(`Texto grabado: ${recordedText}`);
+  // Convertimos los segmentos en un objeto Blob de audio y lo guardamos en el elemento <audio> como src
+  const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+  audioPlayer.src = URL.createObjectURL(audioBlob);
+  // Volvemos a poner el array de audioChunks en blanco
+  audioChunks = [];
+  // Habilitamos el botón de inicio y deshabilitamos el de detener
+  startBtn.disabled = false;
+  stopBtn.disabled = true;
+});
+
+// Evento "start" para procesar el inicio de la grabación
+recognition.addEventListener('start', () => {
+  console.log('La grabación ha comenzado');
+  // Deshabilitamos el botón de inicio y habilitamos el de detener
+  startBtn.disabled = true;
+  stopBtn.disabled = false;
+});
+
+// Evento "error" para procesar errores en la grabación
+recognition.addEventListener('error', (e) => {
+  console.error(`Error en la grabación: ${e.error}`);
+});
+
+ */

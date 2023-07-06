@@ -44,12 +44,22 @@ body {
 }
 
 #welcomeToast {
-  position: absolute;
+  width: 80%;
+  position: sticky;
   top: 50%;
   background-color: white;
   color: black;
   font-family: var(--bs-body-font-family);
-  font-size: 1.5rem;
+  font-size: 3.5rem;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 2rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: auto;
+    font-size: 1.5rem;
+  }
 }
 
 .h1-board {

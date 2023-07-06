@@ -14,6 +14,7 @@ class ToastService {
     Some considerations: <br />
     - You must use headphones to improve the experience and help the Api to well detecting the audio. <br />
     - Don't forget to allow the microphone recording! <br />
+    - <b><<<😕 Mobile version not fully functional yet>>></b>  <br />
 
     - Have fun!😛
   </div>
