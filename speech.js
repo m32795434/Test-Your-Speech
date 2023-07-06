@@ -57,7 +57,7 @@ function start() {
   colorsEl.innerHTML = displayColors(colorsByLength); // could be outside the function?
   recognition.continuous = true;
   recognition.lang = 'en-US';
-  recognition.interimResults = false; // will not recognize as soon as it hears a word//SpeechRecognitionResult.isFinal
+  recognition.interimResults = true; // will recognize as soon as it hears a word//SpeechRecognitionResult.isFinal
   recognition.onresult = handleResult;
 
   recognition.onaudiostart = () => {
