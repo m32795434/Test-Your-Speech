@@ -1,5 +1,6 @@
 import { handleResult, reLoadCount, wait } from './handlers';
 import { colorsByLength, isDark } from './colors';
+import { getAudio, isPLayingSetter } from './sound.js';
 import ToastService from './toastService.js';
 
 const colorsEl = document.querySelector('.colors');
@@ -95,6 +96,8 @@ async function handleStart() {
   startBtn.disabled = true;
   stopBtn.disabled = false;
   startTimer();
+  isPLayingSetter(true);
+  getAudio();
 }
 
 export function handleStop() {
@@ -112,6 +115,7 @@ export function handleStop() {
   Array.from(document.querySelectorAll('.got')).forEach((el) =>
     el.classList.remove('got')
   );
+  isPLayingSetter(false);
 }
 
 start();
