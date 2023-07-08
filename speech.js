@@ -7,7 +7,7 @@ const startBtn = document.querySelector('.start');
 const stopBtn = document.querySelector('.stop');
 const timerEl = document.querySelector('.timer');
 
-const TOTAL_TIME = 560;
+const TOTAL_TIME = 400;
 let timeLeft = TOTAL_TIME;
 let timerInterval;
 let audioStart = false;
