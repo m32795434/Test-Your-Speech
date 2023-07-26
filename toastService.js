@@ -12,7 +12,7 @@ class ToastService {
   <div class="toast-body">
     Hello, world! 🌐<br />
     Some considerations: <br />
-    - You must use headphones to improve the experience and help the Api to well detecting the audio. <br />
+    - You must use headphones to improve the experience and help the Api to detect the audio properly. <br />
     - Don't forget to allow the microphone recording! <br />
     - <b><<<😕 Mobile version not fully functional yet>>></b>  <br />
 

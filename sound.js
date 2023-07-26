@@ -18,6 +18,9 @@ export function isPLayingSetter(bool) {
 }
 
 export async function getAudio() {
+  if (/Mobi|Android/i.test(navigator.userAgent)) {
+    alert('😕 Mobile version not fully functional yet');
+  }
   const stream = await navigator.mediaDevices
     .getUserMedia({ audio: true })
     .catch(handleError);
